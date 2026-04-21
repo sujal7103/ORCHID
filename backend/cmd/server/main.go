@@ -32,7 +32,7 @@ import (
 func main() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	logging.Init()
-	log.Println("🚀 Starting Clara Agents backend…")
+	log.Println("🚀 Starting Orchid backend…")
 
 	if err := godotenv.Load(); err != nil {
 		log.Printf("⚠️  No .env file: %v", err)
@@ -113,6 +113,12 @@ func main() {
 		webhookService = services.NewWebhookService(mongoDB)
 	}
 
+	// AnalyticsService handles nil MongoDB internally — always safe to create
+	analyticsService := services.NewAnalyticsService(mongoDB)
+	if mongoDB != nil {
+		_ = analyticsService.EnsureIndexes(context.Background())
+	}
+
 	// ── Redis (scheduler) ─────────────────────────────────────────────────────
 	var redisService *services.RedisService
 	var schedulerService *services.SchedulerService
@@ -171,7 +177,7 @@ func main() {
 	app.Use(logger.New())
 
 	// ── Prometheus metrics (/metrics) ─────────────────────────────────────────
-	prom := fiberprometheus.New("clara_agents")
+	prom := fiberprometheus.New("orchid")
 	prom.RegisterAt(app, "/metrics")
 	app.Use(prom.Middleware)
 
@@ -241,6 +247,14 @@ func main() {
 	agentGroup.Post("/:id/sync", agentHandler.SyncAgent)
 	agentGroup.Get("/:id/webhook", agentHandler.GetWebhook)
 	agentGroup.Delete("/:id/webhook", agentHandler.DeleteWebhook)
+
+	// Execution history
+	if executionService != nil {
+		execHnd := handlers.NewExecutionHandler(executionService)
+		agentGroup.Get("/:id/executions", execHnd.ListByAgent)
+		apiGroup.Get("/executions", execHnd.ListByUser)
+		apiGroup.Get("/executions/:id", execHnd.GetByID)
+	}
 
 	// ── WebSocket (workflow execution streaming) ──────────────────────────────
 	wsHandler := handlers.NewWorkflowWebSocketHandler(agentService, workflowEngine, nil)
@@ -333,6 +347,27 @@ func main() {
 	adminGroup.Post("/models/by-id/tier", modelMgmtHnd.SetModelTier)
 	adminGroup.Delete("/models/by-id/tier", modelMgmtHnd.ClearModelTier)
 	adminGroup.Get("/tiers", modelMgmtHnd.GetTiers)
+
+	// Admin analytics, health, insights, users, autopilot
+	analyticsHnd := handlers.NewAdminAnalyticsHandler(analyticsService, modelService, services.GetHealthService())
+	adminGroup.Get("/analytics/overview", analyticsHnd.GetOverviewStats)
+	adminGroup.Get("/analytics/providers", analyticsHnd.GetProviderAnalytics)
+	adminGroup.Get("/analytics/models", analyticsHnd.GetModelAnalytics)
+	adminGroup.Get("/analytics/chats", analyticsHnd.GetChatAnalytics)
+	adminGroup.Get("/analytics/agents", analyticsHnd.GetAgentAnalytics)
+	adminGroup.Post("/analytics/migrate-timestamps", analyticsHnd.MigrateChatTimestamps)
+	adminGroup.Get("/users", analyticsHnd.GetUsers)
+	adminGroup.Get("/gdpr-policy", analyticsHnd.GetGDPRPolicy)
+	adminGroup.Get("/health", analyticsHnd.GetHealthDashboard)
+	adminGroup.Get("/insights/overview", analyticsHnd.GetInsightsOverview)
+	adminGroup.Get("/insights/metrics", analyticsHnd.GetInsightsMetrics)
+	adminGroup.Get("/insights/health-distribution", analyticsHnd.GetHealthDistribution)
+	adminGroup.Get("/insights/activation-funnel", analyticsHnd.GetActivationFunnel)
+	adminGroup.Get("/insights/feedback-stream", analyticsHnd.GetFeedbackStream)
+	adminGroup.Get("/insights/collection-stats", analyticsHnd.GetCollectionStats)
+	adminGroup.Post("/insights/backfill", analyticsHnd.BackfillMetrics)
+	adminGroup.Get("/autopilot/context", analyticsHnd.GetAutoPilotContext)
+	adminGroup.Post("/autopilot/analyze", analyticsHnd.AnalyzeWithAI)
 
 	// ── Credential routes ─────────────────────────────────────────────────────
 	if credentialService != nil {

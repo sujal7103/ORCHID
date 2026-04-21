@@ -1,5 +1,5 @@
 ###############################################################################
-# Clara Agents — standalone docker-compose
+# Orchid — standalone docker-compose
 # Quick start:
 #   cp .env.example .env     # fill in JWT_SECRET + ENCRYPTION_MASTER_KEY
 #   docker compose up -d
@@ -16,7 +16,7 @@ services:
       args:
         VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:3001}
         VITE_WS_URL: ${VITE_WS_URL:-ws://localhost:3001}
-    container_name: clara-agents-frontend
+    container_name: orchid-frontend
     ports:
       - "${FRONTEND_PORT:-3000}:80"
     depends_on:
@@ -30,22 +30,22 @@ services:
       start_period: 5s
       retries: 3
     networks:
-      - clara-agents
+      - orchid
 
   # ── Backend (Go / Fiber) ───────────────────────────────────────────────────
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: clara-agents-backend
+    container_name: orchid-backend
     ports:
       - "${BACKEND_PORT:-3001}:3001"
     environment:
       - ENVIRONMENT=${ENVIRONMENT:-development}
       - PORT=3001
-      - MONGODB_URI=mongodb://mongodb:27017/clara-agents
+      - MONGODB_URI=mongodb://mongodb:27017/orchid
       - REDIS_URL=redis://redis:6379
-      - DATABASE_URL=mysql://${MYSQL_USER:-clara}:${MYSQL_PASSWORD:-clarapassword}@mysql:3306/${MYSQL_DATABASE:-claraverse}?parseTime=true
+      - DATABASE_URL=mysql://${MYSQL_USER:-clara}:${MYSQL_PASSWORD:-clarapassword}@mysql:3306/${MYSQL_DATABASE:-orchid}?parseTime=true
       - JWT_SECRET=${JWT_SECRET}
       - JWT_ACCESS_TOKEN_EXPIRY=${JWT_ACCESS_TOKEN_EXPIRY:-15m}
       - JWT_REFRESH_TOKEN_EXPIRY=${JWT_REFRESH_TOKEN_EXPIRY:-168h}
@@ -76,16 +76,16 @@ services:
       start_period: 15s
       retries: 3
     networks:
-      - clara-agents
+      - orchid
 
   # ── MongoDB ────────────────────────────────────────────────────────────────
   mongodb:
     image: mongo:7
-    container_name: clara-agents-mongodb
+    container_name: orchid-mongodb
     volumes:
       - mongodb-data:/data/db
     environment:
-      - MONGO_INITDB_DATABASE=clara-agents
+      - MONGO_INITDB_DATABASE=orchid
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
@@ -94,12 +94,12 @@ services:
       start_period: 30s
       retries: 3
     networks:
-      - clara-agents
+      - orchid
 
   # ── Redis ──────────────────────────────────────────────────────────────────
   redis:
     image: redis:7-alpine
-    container_name: clara-agents-redis
+    container_name: orchid-redis
     command: redis-server --appendonly yes --maxmemory 128mb --maxmemory-policy allkeys-lru
     volumes:
       - redis-data:/data
@@ -111,15 +111,15 @@ services:
       start_period: 5s
       retries: 5
     networks:
-      - clara-agents
+      - orchid
 
   # ── MySQL (providers, models, schema) ─────────────────────────────────────
   mysql:
     image: mysql:8.0
-    container_name: clara-agents-mysql
+    container_name: orchid-mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-claraverse}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-orchid}
       MYSQL_USER: ${MYSQL_USER:-clara}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-clarapassword}
     ports:
@@ -134,7 +134,7 @@ services:
       start_period: 30s
       retries: 5
     networks:
-      - clara-agents
+      - orchid
 
 volumes:
   mongodb-data:
@@ -144,5 +144,5 @@ volumes:
   backend-logs:
 
 networks:
-  clara-agents:
+  orchid:
     driver: bridge

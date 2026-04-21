@@ -1,0 +1,343 @@
+/* ============================================
+   Orchid Design System v1.0
+   CSS Variables - Rose Pink Edition 🌸
+   ============================================ */
+
+/* Christmas Theme - Active Dec 15 - Jan 1 */
+[data-theme='christmas'] {
+  /* Christmas Red Accent */
+  --color-accent: #c41e3a;
+  --color-accent-hover: #d63b57;
+  --color-accent-active: #a01830;
+  --color-accent-light: rgba(196, 30, 58, 0.1);
+  --color-accent-border: rgba(196, 30, 58, 0.3);
+
+  /* Gradients with Christmas red */
+  --gradient-accent: linear-gradient(135deg, #c41e3a 0%, #d63b57 100%);
+  --gradient-glow: radial-gradient(circle, rgba(196, 30, 58, 0.3) 0%, transparent 70%);
+  --gradient-shine: linear-gradient(90deg, transparent, rgba(196, 30, 58, 0.5), transparent);
+
+  /* Glow shadows */
+  --shadow-glow-sm: 0 0 20px rgba(196, 30, 58, 0.2);
+  --shadow-glow-md: 0 10px 30px rgba(196, 30, 58, 0.3);
+  --shadow-glow-lg: 0 20px 60px rgba(196, 30, 58, 0.4);
+
+  /* HSL for shadcn components */
+  --primary: 350 74% 44%;
+  --ring: 350 74% 44%;
+
+  /* Border focus with Christmas red */
+  --color-border-focus: rgba(196, 30, 58, 0.5);
+}
+
+:root {
+  /* ==================== COLORS ==================== */
+
+  /* Background & Surfaces */
+  --color-background: #0f0f0f;
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-surface-elevated: rgba(255, 255, 255, 0.05);
+  --color-surface-hover: rgba(255, 255, 255, 0.08);
+
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-hover: rgba(255, 255, 255, 0.2);
+  --color-border-focus: rgba(233, 30, 99, 0.5);
+
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #d0d0d0; /* Brighter for better readability */
+  --color-text-tertiary: #9a9a9a;
+  --color-text-disabled: #5a5a5a;
+
+  /* Rose Pink Accent (Primary) */
+  --color-accent: #e91e63;
+  --color-accent-hover: #f06292;
+  --color-accent-active: #c2185b;
+  --color-accent-light: rgba(233, 30, 99, 0.1);
+  --color-accent-border: rgba(233, 30, 99, 0.3);
+
+  /* Status Colors */
+  --color-success: #30d158;
+  --color-success-light: rgba(48, 209, 88, 0.1);
+  --color-success-border: rgba(48, 209, 88, 0.3);
+
+  --color-warning: #ffd60a;
+  --color-warning-light: rgba(255, 214, 10, 0.1);
+  --color-warning-border: rgba(255, 214, 10, 0.3);
+
+  --color-error: #ff453a;
+  --color-error-light: rgba(255, 69, 58, 0.1);
+  --color-error-border: rgba(255, 69, 58, 0.3);
+
+  --color-info: #64d2ff;
+  --color-info-light: rgba(100, 210, 255, 0.1);
+  --color-info-border: rgba(100, 210, 255, 0.3);
+
+  /* Gradients */
+  --gradient-text: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
+  --gradient-accent: linear-gradient(135deg, #e91e63 0%, #f06292 100%);
+  --gradient-glow: radial-gradient(circle, rgba(233, 30, 99, 0.3) 0%, transparent 70%);
+  --gradient-shine: linear-gradient(90deg, transparent, rgba(233, 30, 99, 0.5), transparent);
+
+  /* ==================== SHADCN THEME VARIABLES ==================== */
+
+  /* Base colors using HSL */
+  --background: 0 0% 0%;
+  --foreground: 0 0% 96%;
+  --card: 0 0% 4%;
+  --card-foreground: 0 0% 96%;
+  --popover: 0 0% 4%;
+  --popover-foreground: 0 0% 96%;
+  --primary: 340 82% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 0 0% 96%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 63%;
+  --accent: 0 0% 15%;
+  --accent-foreground: 0 0% 96%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 96%;
+  --border: 0 0% 15%;
+  --input: 0 0% 15%;
+  --ring: 340 82% 52%;
+  --radius: 1rem;
+
+  /* ==================== SPACING ==================== */
+
+  --space-0: 0;
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
+  --space-24: 6rem; /* 96px */
+  --space-32: 8rem; /* 128px */
+
+  /* ==================== TYPOGRAPHY ==================== */
+
+  /* Font Families */
+  --font-sans:
+    'Satoshi', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', sans-serif;
+  --font-serif: 'Newsreader', 'Merriweather', 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+
+  /* Font Sizes (Fluid Typography) */
+  --text-display: clamp(3.5rem, 8vw, 7rem);
+  --text-h1: clamp(3rem, 7vw, 6rem);
+  --text-h2: clamp(2.5rem, 5vw, 4rem);
+  --text-h3: clamp(2rem, 4vw, 3.5rem);
+  --text-h4: 1.875rem; /* 30px */
+  --text-h5: 1.5rem; /* 24px */
+  --text-h6: 1.25rem; /* 20px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-base: 1rem; /* 16px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-xs: 0.75rem; /* 12px */
+
+  /* Font Weights */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-black: 900;
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.35;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  --leading-loose: 2;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
+  /* ==================== EFFECTS ==================== */
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.5);
+  --shadow-2xl: 0 40px 100px rgba(0, 0, 0, 0.6);
+
+  /* Accent Glow Shadows */
+  --shadow-glow-sm: 0 0 20px rgba(233, 30, 99, 0.2);
+  --shadow-glow-md: 0 10px 30px rgba(233, 30, 99, 0.3);
+  --shadow-glow-lg: 0 20px 60px rgba(233, 30, 99, 0.4);
+
+  /* Border Radius */
+  --radius-none: 0;
+  --radius-sm: 0.5rem; /* 8px */
+  --radius-md: 0.75rem; /* 12px */
+  --radius-lg: 1rem; /* 16px */
+  --radius-xl: 1.25rem; /* 20px */
+  --radius-2xl: 1.5rem; /* 24px */
+  --radius-3xl: 2rem; /* 32px */
+  --radius-full: 9999px; /* Pill shape */
+
+  /* Blur */
+  --blur-none: 0;
+  --blur-sm: 10px;
+  --blur-md: 20px;
+  --blur-lg: 30px;
+  --blur-xl: 40px;
+
+  /* Backdrop Filters */
+  --backdrop-blur-sm: blur(10px);
+  --backdrop-blur-md: blur(20px);
+  --backdrop-blur-lg: blur(30px);
+  --backdrop-nav: blur(20px) saturate(180%);
+
+  /* ==================== ANIMATIONS ==================== */
+
+  /* Transition Durations */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slower: 700ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Easing Functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ==================== LAYOUT ==================== */
+
+  /* Container Max Widths */
+  --container-xs: 640px;
+  --container-sm: 768px;
+  --container-md: 1024px;
+  --container-lg: 1280px;
+  --container-xl: 1440px;
+  --container-max: 1600px;
+
+  /* Section Spacing */
+  --section-padding-y: 8rem;
+  --section-padding-x: 2rem;
+  --grid-gap: 2rem;
+
+  /* ==================== Z-INDEX ==================== */
+
+  --z-0: 0;
+  --z-10: 10;
+  --z-20: 20;
+  --z-30: 30;
+  --z-40: 40;
+  --z-50: 50;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+}
+
+/* ==================== BASE STYLES ==================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-accent-light);
+  color: var(--color-text-primary);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ==================== CUSTOM SCROLLBAR ==================== */
+
+/* Hide scrollbar for textarea */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgba(233, 30, 99, 0.3);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+
+/* Mobile first approach */
+/* sm: min-width: 640px */
+/* md: min-width: 768px */
+/* lg: min-width: 1024px */
+/* xl: min-width: 1280px */
+/* 2xl: min-width: 1536px */
