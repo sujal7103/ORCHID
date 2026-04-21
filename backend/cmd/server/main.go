@@ -364,6 +364,7 @@ func main() {
 	// ── Tools route ───────────────────────────────────────────────────────────
 	toolsHnd := handlers.NewToolsHandler(tools.GetRegistry(), toolService)
 	apiGroup.Get("/tools", toolsHnd.ListTools)
+	apiGroup.Get("/tools/registry", toolsHnd.ListRegistry)
 
 	// ── Start scheduler ───────────────────────────────────────────────────────
 	if schedulerService != nil {
