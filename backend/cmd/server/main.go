@@ -329,6 +329,7 @@ func main() {
 	adminGroup.Post("/models/import-aliases", modelMgmtHnd.ImportAliasesFromJSON)
 	adminGroup.Put("/models/bulk/agents-enabled", modelMgmtHnd.BulkUpdateAgentsEnabled)
 	adminGroup.Put("/models/bulk/visibility", modelMgmtHnd.BulkUpdateVisibility)
+	adminGroup.Put("/models/bulk/tier", modelMgmtHnd.BulkUpdateTier)
 	adminGroup.Post("/models/by-id/tier", modelMgmtHnd.SetModelTier)
 	adminGroup.Delete("/models/by-id/tier", modelMgmtHnd.ClearModelTier)
 	adminGroup.Get("/tiers", modelMgmtHnd.GetTiers)
