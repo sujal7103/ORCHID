@@ -24,6 +24,7 @@ import (
 	"github.com/gofiber/contrib/websocket"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/joho/godotenv"
@@ -214,6 +215,31 @@ func main() {
 	authGroup.Post("/refresh", authHandler.RefreshToken)
 	authGroup.Post("/logout", jwtMw, authHandler.Logout)
 	authGroup.Get("/me", jwtMw, authHandler.GetCurrentUser)
+
+	// Google OAuth routes — only registered when credentials + Redis are configured.
+	var googleAuthHandler *handlers.GoogleAuthHandler
+	if jwtAuth != nil {
+		googleAuthHandler = handlers.NewGoogleAuthHandler(cfg, jwtAuth, userService, redisService)
+	}
+	if googleAuthHandler != nil {
+		// Rate limit: 20 requests per minute per IP on all OAuth endpoints.
+		oauthLimiter := limiter.New(limiter.Config{
+			Max:        20,
+			Expiration: 1 * time.Minute,
+			KeyGenerator: func(c *fiber.Ctx) string {
+				return c.IP()
+			},
+			LimitReached: func(c *fiber.Ctx) error {
+				return c.Status(fiber.StatusTooManyRequests).JSON(fiber.Map{"error": "too many requests"})
+			},
+		})
+		authGroup.Get("/google", oauthLimiter, googleAuthHandler.Redirect)
+		authGroup.Get("/google/callback", oauthLimiter, googleAuthHandler.Callback)
+		authGroup.Post("/google/exchange", oauthLimiter, googleAuthHandler.ExchangeCode)
+		log.Println("✅ Google OAuth routes registered")
+	} else {
+		log.Println("⚠️  Google OAuth disabled (set GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, and ensure Redis is running)")
+	}
 
 	// ── Agent routes ──────────────────────────────────────────────────────────
 	agentHandler := handlers.NewAgentHandler(agentService, workflowGeneratorService)
