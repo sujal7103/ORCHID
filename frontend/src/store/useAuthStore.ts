@@ -33,6 +33,7 @@ interface AuthState {
   initialize: () => void;
   getAccessToken: () => string | null;
   clearError: () => void;
+  loginWithGoogleToken: (token: string, user: AuthUser) => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -131,6 +132,17 @@ export const useAuthStore = create<AuthState>()(
 
       clearError() {
         set({ error: null });
+      },
+
+      loginWithGoogleToken(token: string, user: AuthUser) {
+        setAuthToken(token);
+        set({
+          accessToken: token,
+          user,
+          isAuthenticated: true,
+          isLoading: false,
+          error: null,
+        });
       },
     }),
     {
