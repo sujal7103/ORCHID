@@ -161,9 +161,9 @@ Log in → **Admin → Providers** → add your API key for OpenAI, Anthropic, G
 | `FRONTEND_PORT` | `3000` | Host port for the UI |
 | `BACKEND_PORT` | `3001` | Host port for the API |
 | `MYSQL_USER` | `clara` | MySQL username |
-| `MYSQL_PASSWORD` | `clarapassword` | MySQL password |
+| `MYSQL_PASSWORD` | *(set in .env)* | MySQL password — **change before deploying** |
 | `MYSQL_DATABASE` | `orchid` | MySQL database name |
-| `MYSQL_ROOT_PASSWORD` | `rootpassword` | MySQL root password |
+| `MYSQL_ROOT_PASSWORD` | *(set in .env)* | MySQL root password — **change before deploying** |
 | `JWT_ACCESS_TOKEN_EXPIRY` | `15m` | Access token lifetime |
 | `JWT_REFRESH_TOKEN_EXPIRY` | `168h` | Refresh token lifetime (7 days) |
 | `ALLOWED_ORIGINS` | `http://localhost:3000,http://localhost:5173` | CORS origins |
