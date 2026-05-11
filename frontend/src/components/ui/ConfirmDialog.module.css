@@ -1,0 +1,60 @@
+.confirmDialog {
+  padding: 0.5rem 0;
+}
+
+.message {
+  color: var(--color-text-secondary, #94a3b8);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.cancelButton {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border, #334155);
+  background: transparent;
+  color: var(--color-text-secondary, #94a3b8);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cancelButton:hover {
+  background: var(--color-surface-hover, rgba(255, 255, 255, 0.05));
+}
+
+.confirmButton {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.confirmButton:hover {
+  opacity: 0.9;
+}
+
+.info {
+  background: var(--color-accent, #3b82f6);
+  color: white;
+}
+
+.warning {
+  background: var(--color-warning, #f59e0b);
+  color: white;
+}
+
+.danger {
+  background: var(--color-error, #ef4444);
+  color: white;
+}

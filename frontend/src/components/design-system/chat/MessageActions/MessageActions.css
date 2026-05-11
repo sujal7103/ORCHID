@@ -1,0 +1,42 @@
+/* Message Actions */
+.message-actions {
+  display: flex;
+  gap: var(--space-1);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+*:hover > .message-actions {
+  opacity: 1;
+}
+
+.message-actions-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.message-actions-btn:hover {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-accent-border);
+  color: var(--color-accent);
+  transform: scale(1.1);
+}
+
+.message-actions-btn:active {
+  transform: scale(0.95);
+}
+
+.message-actions-btn-danger:hover {
+  border-color: var(--color-error-border);
+  color: var(--color-error);
+}

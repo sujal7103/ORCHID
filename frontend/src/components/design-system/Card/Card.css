@@ -1,0 +1,107 @@
+/* Base Card Styles */
+.card {
+  border: 0.5px solid var(--color-border);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hoverable {
+  cursor: pointer;
+}
+
+/* Glass Card */
+.card-glass {
+  background: var(--color-surface);
+  backdrop-filter: var(--backdrop-blur-lg);
+  -webkit-backdrop-filter: var(--backdrop-blur-lg);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-12);
+}
+
+.card-glass.card-hoverable:hover {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-border-hover);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Feature Card */
+.card-feature {
+  background: var(--color-surface);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-12);
+}
+
+.card-feature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-shine);
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+}
+
+.card-feature.card-hoverable:hover {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-accent-border);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow-lg);
+}
+
+.card-feature.card-hoverable:hover::before {
+  opacity: 1;
+}
+
+/* Widget Card */
+.card-widget {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.card-widget.card-hoverable:hover {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-border-hover);
+  transform: translateY(-4px);
+}
+
+/* Card Content Elements */
+.card-icon {
+  font-size: var(--text-h3);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.card-title {
+  font-size: var(--text-h5);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+  line-height: var(--leading-snug);
+}
+
+.card-description {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+/* Spacing for children */
+.card > * + * {
+  margin-top: var(--space-4);
+}
+
+.card > .card-icon + * {
+  margin-top: var(--space-4);
+}
+
+.card > .card-title + * {
+  margin-top: var(--space-3);
+}

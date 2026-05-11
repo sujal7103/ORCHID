@@ -1,0 +1,165 @@
+/* Chat Bubble Container */
+.chat-bubble {
+  display: flex;
+  gap: var(--space-3);
+  width: 100%;
+  margin-bottom: var(--space-6);
+  animation: fadeIn var(--transition-base);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Role-based Alignment */
+.chat-bubble-user {
+  flex-direction: row-reverse;
+}
+
+.chat-bubble-assistant {
+  flex-direction: row;
+}
+
+/* Avatar */
+.chat-bubble-avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  overflow: hidden;
+}
+
+.chat-bubble-avatar-default {
+  font-size: 1.25rem;
+}
+
+.chat-bubble-user .chat-bubble-avatar {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent-border);
+}
+
+/* Content Wrapper */
+.chat-bubble-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 75%;
+  min-width: 200px;
+}
+
+@media (max-width: 768px) {
+  .chat-bubble-content-wrapper {
+    max-width: 85%;
+    min-width: 150px;
+  }
+}
+
+/* Message Content */
+.chat-bubble-content {
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  color: var(--color-text-primary);
+  line-height: var(--leading-relaxed);
+  font-size: var(--text-base);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  transition: all var(--transition-base);
+}
+
+.chat-bubble-user .chat-bubble-content {
+  background: var(--color-accent);
+  border-color: var(--color-accent-border);
+  color: #ffffff;
+}
+
+.chat-bubble-assistant .chat-bubble-content {
+  background: var(--color-surface-elevated);
+}
+
+.chat-bubble-content:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Status States */
+.chat-bubble-sending .chat-bubble-content {
+  opacity: 0.7;
+}
+
+.chat-bubble-error .chat-bubble-content {
+  border-color: var(--color-error-border);
+  background: var(--color-error-light);
+}
+
+/* Meta Information */
+.chat-bubble-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+.chat-bubble-user .chat-bubble-meta {
+  flex-direction: row-reverse;
+}
+
+.chat-bubble-timestamp {
+  color: var(--color-text-tertiary);
+}
+
+.chat-bubble-status {
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.chat-bubble-status-error {
+  color: var(--color-error);
+  font-weight: var(--font-medium);
+}
+
+/* Actions */
+.chat-bubble-actions {
+  display: flex;
+  gap: var(--space-2);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.chat-bubble:hover .chat-bubble-actions {
+  opacity: 1;
+}
+
+/* Code blocks inside bubbles */
+.chat-bubble-content pre {
+  margin: var(--space-3) 0;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+.chat-bubble-content code {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.chat-bubble-content p {
+  margin: 0;
+}
+
+.chat-bubble-content p + p {
+  margin-top: var(--space-3);
+}

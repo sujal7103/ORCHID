@@ -1,0 +1,131 @@
+/* Alert Component */
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid;
+  animation: alertSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes alertSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.alert-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.alert-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+}
+
+.alert-message {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.alert-action {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.alert-dismiss {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: currentColor;
+  opacity: 0.7;
+  transition: all var(--transition-base);
+  margin-top: -2px;
+}
+
+.alert-dismiss:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Variants */
+.alert-info {
+  background: var(--color-info-light);
+  border-color: var(--color-info-border);
+  color: var(--color-info);
+}
+
+.alert-info .alert-title {
+  color: var(--color-info);
+}
+
+.alert-info .alert-message {
+  color: var(--color-text-primary);
+}
+
+.alert-success {
+  background: var(--color-success-light);
+  border-color: var(--color-success-border);
+  color: var(--color-success);
+}
+
+.alert-success .alert-title {
+  color: var(--color-success);
+}
+
+.alert-success .alert-message {
+  color: var(--color-text-primary);
+}
+
+.alert-warning {
+  background: var(--color-warning-light);
+  border-color: var(--color-warning-border);
+  color: var(--color-warning);
+}
+
+.alert-warning .alert-title {
+  color: var(--color-warning);
+}
+
+.alert-warning .alert-message {
+  color: var(--color-text-primary);
+}
+
+.alert-error {
+  background: var(--color-error-light);
+  border-color: var(--color-error-border);
+  color: var(--color-error);
+}
+
+.alert-error .alert-title {
+  color: var(--color-error);
+}
+
+.alert-error .alert-message {
+  color: var(--color-text-primary);
+}

@@ -1,0 +1,105 @@
+/* Checkbox Component */
+.checkbox-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  user-select: none;
+  width: fit-content;
+}
+
+.checkbox-label-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.checkbox-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  color: transparent;
+}
+
+.checkbox-box svg {
+  transform: scale(0);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.checkbox-input:checked + .checkbox-box {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+.checkbox-input:checked + .checkbox-box svg {
+  transform: scale(1);
+}
+
+.checkbox-box-indeterminate {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: white;
+}
+
+.checkbox-box-indeterminate svg {
+  transform: scale(1);
+}
+
+.checkbox-input:focus-visible + .checkbox-box {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.checkbox-label:hover .checkbox-box:not(.checkbox-label-disabled .checkbox-box) {
+  border-color: var(--color-accent);
+}
+
+.checkbox-box-error {
+  border-color: var(--color-error);
+}
+
+.checkbox-label:hover .checkbox-box-error {
+  border-color: var(--color-error);
+}
+
+.checkbox-label-text {
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  line-height: var(--leading-normal);
+}
+
+.checkbox-required {
+  color: var(--color-error);
+  margin-left: var(--space-1);
+}
+
+.checkbox-helper-text {
+  margin-left: calc(20px + var(--space-3));
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.checkbox-helper-error {
+  color: var(--color-error);
+}

@@ -1,0 +1,136 @@
+/* Tooltip Component */
+.tooltip-container {
+  position: relative;
+  display: inline-flex;
+  width: fit-content;
+}
+
+/* Portal-based tooltip (fixed positioning handled by JS) */
+.tooltip-portal {
+  pointer-events: none;
+}
+
+/* Transform-based centering for each position */
+.tooltip-portal-top {
+  transform: translate(-50%, -100%);
+}
+
+.tooltip-portal-bottom {
+  transform: translate(-50%, 0);
+}
+
+.tooltip-portal-left {
+  transform: translate(-100%, -50%);
+}
+
+.tooltip-portal-right {
+  transform: translate(0, -50%);
+}
+
+.tooltip-static {
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(var(--blur-md));
+  animation: tooltipFadeIn 0.08s ease-out;
+}
+
+/* Legacy absolute-positioned tooltip (kept for compatibility) */
+.tooltip {
+  position: absolute;
+  z-index: var(--z-tooltip);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(var(--blur-md));
+  pointer-events: none;
+  animation: tooltipFadeIn 0.08s ease-out;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  transform: rotate(45deg);
+}
+
+/* Top Position */
+.tooltip-top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-arrow-top {
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  border-top: none;
+  border-left: none;
+}
+
+/* Bottom Position */
+.tooltip-bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-arrow-bottom {
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  border-bottom: none;
+  border-right: none;
+}
+
+/* Left Position */
+.tooltip-left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-arrow-left {
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  border-left: none;
+  border-bottom: none;
+}
+
+/* Right Position */
+.tooltip-right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-arrow-right {
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  border-right: none;
+  border-top: none;
+}

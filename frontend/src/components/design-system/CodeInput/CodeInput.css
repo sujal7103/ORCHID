@@ -1,0 +1,108 @@
+.code-input {
+  display: flex;
+  justify-content: center;
+}
+
+.code-input-boxes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.code-input-box {
+  width: 40px;
+  height: 48px;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  transition: all 0.15s ease;
+  outline: none;
+  caret-color: var(--color-accent);
+}
+
+.code-input-box::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.code-input-box:hover:not(:disabled) {
+  border-color: var(--color-border-hover);
+}
+
+.code-input-box:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-muted);
+  background: var(--color-surface-elevated);
+}
+
+.code-input-box.filled {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-border-hover);
+}
+
+.code-input-box:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--color-surface);
+}
+
+.code-input-separator {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  margin: 0 4px;
+  user-select: none;
+}
+
+/* Error state */
+.code-input-error .code-input-box {
+  border-color: var(--color-error);
+  animation: shake 0.4s ease;
+}
+
+.code-input-error .code-input-box:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-4px);
+  }
+  40% {
+    transform: translateX(4px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+  .code-input-box {
+    width: 36px;
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .code-input-boxes {
+    gap: 4px;
+  }
+
+  .code-input-separator {
+    margin: 0 2px;
+  }
+}

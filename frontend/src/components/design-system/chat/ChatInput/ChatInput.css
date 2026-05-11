@@ -1,0 +1,176 @@
+/* Chat Input Container */
+.chat-input {
+  width: 100%;
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-base);
+}
+
+.chat-input:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-light);
+}
+
+/* File Attachments */
+.chat-input-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+.chat-input-file {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface-elevated);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+}
+
+.chat-input-file-name {
+  color: var(--color-text-primary);
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-input-file-remove {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+}
+
+.chat-input-file-remove:hover {
+  color: var(--color-error);
+}
+
+/* Input Wrapper */
+.chat-input-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+}
+
+/* Textarea */
+.chat-input-textarea {
+  flex: 1;
+  min-height: 24px;
+  max-height: 200px;
+  padding: var(--space-2);
+  background: transparent;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: var(--text-base);
+  font-family: var(--font-sans);
+  line-height: var(--leading-normal);
+  resize: none;
+  outline: none;
+}
+
+.chat-input-textarea::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.chat-input-textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Buttons */
+.chat-input-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+}
+
+.chat-input-btn:hover:not(:disabled) {
+  background: var(--color-surface-elevated);
+  color: var(--color-accent);
+}
+
+.chat-input-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.chat-input-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Send Button */
+.chat-input-send-btn-active {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.chat-input-send-btn-active:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+/* File Input (Hidden) */
+.chat-input-file-input {
+  display: none;
+}
+
+/* Footer */
+.chat-input-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  border-top: 0.5px solid var(--color-border);
+  font-size: var(--text-xs);
+}
+
+.chat-input-char-count {
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.chat-input-char-count-error {
+  color: var(--color-error);
+}
+
+.chat-input-hint {
+  color: var(--color-text-tertiary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .chat-input-hint {
+    display: none;
+  }
+
+  .chat-input-file-name {
+    max-width: 120px;
+  }
+}

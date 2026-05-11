@@ -1,0 +1,132 @@
+/* Switch Component */
+.switch-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.switch-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  user-select: none;
+  width: fit-content;
+}
+
+.switch-label-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.switch-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.switch-track {
+  position: relative;
+  flex-shrink: 0;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+}
+
+/* Small Size */
+.switch-track-sm {
+  width: 32px;
+  height: 18px;
+}
+
+.switch-thumb-sm {
+  width: 12px;
+  height: 12px;
+}
+
+.switch-input:checked + .switch-track-sm .switch-thumb-sm {
+  transform: translate(14px, -50%);
+}
+
+/* Medium Size (default) */
+.switch-track-md {
+  width: 44px;
+  height: 24px;
+}
+
+.switch-thumb-md {
+  width: 18px;
+  height: 18px;
+}
+
+.switch-input:checked + .switch-track-md .switch-thumb-md {
+  transform: translate(20px, -50%);
+}
+
+/* Large Size */
+.switch-track-lg {
+  width: 56px;
+  height: 32px;
+}
+
+.switch-thumb-lg {
+  width: 26px;
+  height: 26px;
+}
+
+.switch-input:checked + .switch-track-lg .switch-thumb-lg {
+  transform: translate(24px, -50%);
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+  background: var(--color-text-secondary);
+  border-radius: var(--radius-full);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.switch-input:checked + .switch-track {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.switch-input:checked + .switch-track .switch-thumb {
+  background: white;
+}
+
+.switch-input:focus-visible + .switch-track {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.switch-label:hover .switch-track:not(.switch-label-disabled .switch-track) {
+  border-color: var(--color-accent);
+}
+
+.switch-label-text {
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  line-height: var(--leading-normal);
+}
+
+.switch-helper-text {
+  margin-left: calc(44px + var(--space-3));
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Responsive helper text margin based on size */
+.switch-track-sm ~ .switch-label-text ~ .switch-helper-text {
+  margin-left: calc(32px + var(--space-3));
+}
+
+.switch-track-lg ~ .switch-label-text ~ .switch-helper-text {
+  margin-left: calc(56px + var(--space-3));
+}

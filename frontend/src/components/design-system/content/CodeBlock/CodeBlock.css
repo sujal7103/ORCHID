@@ -1,0 +1,132 @@
+/* Code Block Container - OpenAI minimal style */
+.code-block {
+  width: 100%;
+  max-width: 100%;
+  border-radius: var(--radius-lg);
+  background: #1e1e1e; /* Consistent dark background like OpenAI */
+  overflow: hidden;
+  margin: var(--space-4) 0;
+}
+
+/* Code Block Header - Minimal like OpenAI (no separator) */
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  background: #1e1e1e; /* Same as code area - no separation */
+}
+
+.code-block-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+}
+
+/* Language label - simple lowercase like OpenAI */
+.code-block-language {
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  text-transform: lowercase;
+}
+
+.code-block-filename {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+}
+
+/* Copy Button - Minimal text style like OpenAI */
+.code-block-copy-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-tertiary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  font-family: var(--font-sans);
+}
+
+.code-block-copy-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.code-block-copy-btn svg {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+/* Code Block Content */
+.code-block-content {
+  overflow-x: auto;
+  background: #1e1e1e;
+}
+
+.code-block-content pre {
+  margin: 0 !important;
+  padding: var(--space-4) !important;
+  line-height: 1.6 !important; /* More breathing room */
+}
+
+.code-block-content code {
+  font-family: var(--font-mono) !important;
+  font-size: 14px !important; /* Fixed size for consistency */
+  line-height: 1.6 !important;
+}
+
+/* Scrollbar Styling */
+.code-block-content::-webkit-scrollbar {
+  height: 8px;
+}
+
+.code-block-content::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+.code-block-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+}
+
+.code-block-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Line Numbers Styling */
+.code-block-content .linenumber {
+  color: rgba(255, 255, 255, 0.3) !important;
+  min-width: 2.5em;
+  padding-right: 1em !important;
+  text-align: right;
+  user-select: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .code-block {
+    border-radius: var(--radius-md);
+    margin: var(--space-3) 0;
+  }
+
+  .code-block-header {
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .code-block-content pre {
+    padding: var(--space-3) !important;
+  }
+
+  .code-block-content code {
+    font-size: 13px !important;
+  }
+}

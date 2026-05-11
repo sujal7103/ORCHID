@@ -1,0 +1,24 @@
+/* Streaming Text */
+.streaming-text {
+  display: inline;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.streaming-text-cursor {
+  display: inline-block;
+  color: var(--color-accent);
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
